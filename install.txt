@@ -1,0 +1,19 @@
+[install bastillion]
+#install jdk
+apt install openjdk-11-jre-headless
+apt install openjdk-11-jdk-headless
+
+#install bastillion
+download dari linkk dokumentasi bastillion
+tar xfz bastillion-jetty-v3.09_00.tar.gz -C /opt
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+echo $JAVA_HOME ===> untuk cek JAVA_HOME
+
+cd /opt/Bastillion-jetty
+./startBastillion.sh
+
+cp /opt/Bastillion-jetty/jetty/bin/jetty.sh /etc/init.d/bastillion
+echo JETTY_HOME=/opt/Bastillion-jetty/jetty > /etc/default/bastillion
+
+/etc/init.d/bastillion start
