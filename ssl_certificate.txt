@@ -1,0 +1,31 @@
+[pasang ssl certificate trusted]
+#buat keystore
+keytool -keystore keystore -alias bastillion -genkey -keyalg RSA -sigalg SHA256withRSA
+==> isi menyesuiakan
+
+#import certificate kedalam keystore
+openssl pkcs12 -export -inkey bastillion.key -in bastillion.crt -out bastillion.pkcs12
+==> note : [bastillion.key = merupakan private key ssl], [bastillion.crt = gabungan antara crt, intermediate,dan root dari ssl yang telah dibeli]
+
+#buat keystore baru dan import certificate dan key
+keytool -importkeystore -srckeystore bastillion.pkcs12 -srcstoretype PKCS12 -destkeystore keystore
+
+
+[konfigurasi keystore dengan jetty]
+#copy keystore ke direktoi etc jetty
+cp keystore /opt/Bastillion-jetty/jetty/etc/
+
+#Set obfuscated keystore password
+java -cp Bastillion-jetty/jetty/lib/jetty-util-X.X.X.vXXX.jar org.eclipse.jetty.util.security.Password <keystore password>
+==> From the output, take the OBF value and set it to the default value in jetty/etc/jetty-ssl-context.xml 
+Change the follow OBF values:
+KeyStorePassword=<OBF Value>
+KeyManagerPassword=<OBF Value>
+TrustStorePassword=<OBF Value> #ini dibiarin aja
+
+==> Last, edit thr OBF values in the jetty/modules/ssl.mod
+jetty.sslContext.keyStorePassword=<OBF Value>
+jetty.sslContext.keyManagerPassword=<OBF Value>
+jetty.sslContext.trustStorePassword=<OBF Value>
+
+restart jetty dan cek sertifikat ssl sudah aktif

@@ -1,0 +1,4 @@
+[startup service]
+cp /opt/Bastillion-jetty/jetty/bin/jetty.sh /etc/init.d/bastillion
+echo JETTY_HOME=/opt/Bastillion-jetty/jetty > /etc/default/bastillion
+/etc/init.d/bastillion start
