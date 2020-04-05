@@ -8,7 +8,7 @@ Bastillion generate public/private SSH key sendiri saat startup. Key diletakan d
 Sistem administrator tambahan dapat ditambahkan dan sesi terminalnya dan riwayatnya diaudit. Selain itu, Bastillion dapat mengelola, mendistribusikan, dan menonaktifkan kunci publik yang telah diatur dalam aplikasi. Manajemen kunci diaktifkan secara default untuk mencegah kunci publik yang tidak dikelola dan menegakkan praktik terbaik.
 
 ## **Kasus dalam konfigurasi ini:**
-Saya ingin mengistall bastillion server di **Server Ubuntu 18.04**, dengan tujuan membuat ssh gateway. Konfigurasi ini ada 3 langkah;
+Saya ingin mengistall bastillion server di **Ubuntu Server 18.04**, dengan tujuan membuat ssh gateway. Konfigurasi ini ada 3 langkah;
 1. Install Bastilliion
 2. Membuat Bastillion menjadi Startup Service
 3. Menambahkan SSL Certificate Trusted pada Bastillion
